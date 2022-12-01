@@ -1,6 +1,6 @@
 fn main() {
     let input = include_str!("../input/day1.txt").trim();
-    let elves = input
+    let mut elves = input
         .split("\n\n")
         .enumerate()
         // Compute total calories
@@ -11,12 +11,16 @@ fn main() {
                 .reduce(|sum, item| sum + item)
                 .unwrap();
             (elve_number, total_calories)
-        });
-    let elve_max_calories = elves
-        .reduce(|max, item| if max.1 > item.1 { max } else { item })
-        .unwrap();
+        })
+        .collect::<Vec<_>>();
+    elves.sort_by_key(|e| e.1);
+    elves.reverse();
     println!(
         "Elve #{} has the most ({}) calories",
-        elve_max_calories.0, elve_max_calories.1
+        elves[0].0, elves[0].1
+    );
+    println!(
+        "Top 3 calories combined: {}",
+        elves[0].1 + elves[1].1 + elves[2].1
     );
 }
