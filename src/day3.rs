@@ -33,7 +33,7 @@ fn main() {
         })
         .map(get_priority);
     println!(
-        "Sum of priorities for part 1: {}",
+        "Sum of priorities for part 2: {}",
         priorities_2.sum::<u32>()
     );
 }
