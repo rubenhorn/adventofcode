@@ -15,9 +15,13 @@ struct Monkey {
 }
 
 impl Display for Monkey {
-    fn fmt(&self, _: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        print!("Monkey {}: {}", self.number, self.items.iter().join(", "));
-        Ok(())
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "Monkey {}: {}",
+            self.number,
+            self.items.iter().join(", ")
+        )
     }
 }
 
